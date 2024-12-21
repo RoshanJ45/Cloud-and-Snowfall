@@ -1,0 +1,131 @@
+<div class="cloud">
+  <div></div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      background-color: black;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 30px;
+    }
+    .cloud {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+    }
+    .cloud > * {
+      background-color: white;
+      border-top-right-radius: 50%;
+      border-top-left-radius: 50%;
+    }
+    .cloud > :nth-child(1), 
+    .cloud > :nth-child(3) {
+      width: 80px;
+      height: 30px;
+    }
+    .cloud > :nth-child(1) {
+      border-radius: 50%;
+      height: 60px;
+      margin-right: -14%;
+    }
+    .cloud > :nth-child(3) {
+      border-radius: 50%;
+      margin-left: -15%;
+      margin-bottom: 2%;
+      height: 75px;
+    }
+    .cloud > :nth-child(2) {
+      width: 150px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    @media (max-width: 650px) {
+      .cloud > :nth-child(2) {
+        width: 100px;
+        height: 90px;
+      }
+    }
+    .snowflake-area {
+      position: absolute;
+      width: 100%;
+      bottom: 15%;
+      left: 0;
+    }
+    .snowflake {
+      position: absolute;
+      top: 20%;
+      background-color: snow;
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(calc(100vh));
+      }
+    }
+  </style>
+  <div class="middle-cloud"></div>
+  <script>
+    const cloud = document.querySelector(".cloud");
+    const snowflakeArea = document.createElement("div");
+    const middleCloud = document.querySelector(".middle-cloud");
+    middleCloud.style.position = "relative";
+    snowflakeArea.classList.add("snowflake-area");
+    middleCloud.appendChild(snowflakeArea);
+    const getRandomX = () => {
+      return ${Math.random() * 5}vw;
+    }
+    const getRandomXLeft = () => {
+      return -${Math.random() * 5}vw;
+    }
+    const stylesheet = document.createElement("style");
+    stylesheet.innerHTML = `
+      @keyframes wind {
+        0% {
+          transform: translate(0, 0);
+        }
+        5% {
+          transform: translate(0, 5vh);
+        }
+        40% {
+          transform: translate(var(--randomXLeft), 40vh);
+        }
+        100% {
+          transform: translate(var(--randomX), 100vh);
+        }
+      }
+    `;
+    document.head.appendChild(stylesheet);
+    for (let i = 0; i < 800; i++) {
+      const snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
+      const randomSize = Math.random() * 3 + 1;
+      const randomLeft = Math.random() * 100;
+      const animationDelay = Math.random() * 5 + 1;
+      const animationDuration = Math.random() * 5 + 3;
+      const randomOpacity = Math.random() * 0.6 + 0.4;
+      const randomX = getRandomX();
+      const randomXLeft = getRandomXLeft();
+      snowflake.style.setProperty('--randomX', randomX);
+      snowflake.style.setProperty('--randomXLeft', randomXLeft);
+      snowflake.style.animation = "wind 5s linear infinite";
+      snowflake.style.width = ${randomSize}px;
+      snowflake.style.left = ${randomLeft}%;
+      snowflake.style.animationDelay = ${animationDelay}s;
+      snowflake.style.animationDuration = ${animationDuration}s;
+      snowflake.style.opacity = ${randomOpacity};
+      snowflakeArea.appendChild(snowflake);
+    }
+  </script>
+  <div></div>
+</div>

@@ -1,0 +1,73 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      background-color: black;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 30px;
+    }
+    .cloud {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+    }
+    .cloud > * {
+      background-color: white;
+      border-top-right-radius: 50%;
+      border-top-left-radius: 50%;
+    }
+    .cloud > :nth-child(1), 
+    .cloud > :nth-child(3) {
+      width: 80px;
+      height: 30px;
+    }
+    .cloud > :nth-child(1) {
+      border-radius: 50%;
+      height: 60px;
+      margin-right: -14%;
+    }
+    .cloud > :nth-child(3) {
+      border-radius: 50%;
+      margin-left: -15%;
+      margin-bottom: 2%;
+      height: 75px;
+    }
+    .cloud > :nth-child(2) {
+      width: 150px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    @media (max-width: 650px) {
+      .cloud > :nth-child(2) {
+        width: 100px;
+        height: 90px;
+      }
+    }
+    .snowflake-area {
+      position: absolute;
+      width: 100%;
+      bottom: 15%;
+      left: 0;
+    }
+    .snowflake {
+      position: absolute;
+      top: 20%;
+      background-color: snow;
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(calc(100vh));
+      }
+    }
+  
